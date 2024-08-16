@@ -1,33 +1,51 @@
 const container = document.querySelector("#container");
-let size = 16
+let size = 16;
 
-// creating 16*16 grid
+// Function to create the grid
 let setGrid = () => { 
-    for (i = 1; i <= (size * size); i++) {
+    for (let i = 1; i <= (size * size); i++) {
         const grid = document.createElement('div');
         grid.classList.add('grid');
         grid.style.cssText = `flex-basis: calc(960px / ${size});`;
-            grid.addEventListener('mouseover', () => {
-                grid.style.backgroundColor = 'red';
-            })
-            grid.addEventListener('mouseout', () => {
-                grid.style.backgroundColor = 'white';
-            })
-    container.appendChild(grid);
-}
+
+        // Initialize darkness level
+        let darkness = 0; 
+
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        const randomColor = `rgb(${r}, ${g}, ${b})`;
+
+        // Dynamic grid color changing on mouseover
+        grid.addEventListener('mouseover', () => {
+            // Increase darkness by 0.1 on each mouseover
+            darkness += 0.1;
+            if (darkness > 1) darkness = 1; // Cap at fully black
+            grid.style.backgroundColor = randomColor;
+        });
+
+        // Darken white grid after mouseover event
+        grid.addEventListener('mouseout', () => {
+            let darkenedColor = `rgb(${255 * (1 - darkness)}, ${255 * (1 - darkness)}, ${255 * (1 - darkness)})`;
+            grid.style.backgroundColor = darkenedColor;
+        });
+
+        container.appendChild(grid);
+    }
 }
 
-setGrid()
+setGrid();
 
+// Event listener for the button to create a new grid
 const btn = document.querySelector('#btn');
-
-// Click button to ask a prompt to set a new grid.
 btn.addEventListener('click', () => {
-    let gridSize = prompt('Enter length between 2-100')
+    let gridSize = prompt('Enter length between 2-100');
     gridSize = parseInt(gridSize);
     if (gridSize > 1 && gridSize <= 100) {
         container.innerHTML = '';
-        size =  gridSize;
-        setGrid()
-    } else {alert('Invalid Response')}
-})
+        size = gridSize;
+        setGrid();
+    } else {
+        alert('Invalid Response');
+    }
+});
