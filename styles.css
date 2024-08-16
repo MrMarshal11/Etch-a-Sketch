@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 800px;
+    height: 800px;
+    border: 1px solid black; /* Optional: for visibility */
+}
+
+.grid {
+    flex-basis: 50px; /* Each grid cell takes up 25px */
+    height: 50px;
+    box-sizing: border-box; /* Ensures padding and borders are included in the size */
+    border: 1px solid black; /* Optional: for visibility */
+}
