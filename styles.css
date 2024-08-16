@@ -2,26 +2,30 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-flow: column;
+    flex-flow: column wrap;
     gap: 10px;
 }
 
+/* Makes the grid container on the screen */
 #mainContainer {
     display: flex;
     justify-content: center;
 }
 
+/* Grid container */
 #container {
     display: flex;
-    flex-flow: row wrap;
-    width: 800px;
-    height: 800px;
-    border: 1px solid black; /* Optional: for visibility */
+    flex-flow: wrap;
+    width: 960px;
+    height: 960px;
+    border: 5px solid black; 
 }
 
+/* Each individual grid inside the grid container */
 .grid {
-    flex-basis: 50px; /* Each grid cell takes up 25px */
-    height: 50px;
-    box-sizing: border-box; /* Ensures padding and borders are included in the size */
-    border: 1px solid black; /* Optional: for visibility */
+    flex-basis: calc(960px / 16); 
+    height: auto;
+    flex-grow: 1;
+    box-sizing: border-box;
+    border: 0.25px solid black; 
 }

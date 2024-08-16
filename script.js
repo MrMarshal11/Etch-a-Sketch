@@ -4,14 +4,15 @@ let size = 16
 // creating 16*16 grid
 let setGrid = () => { 
     for (i = 1; i <= (size * size); i++) {
-    const grid = document.createElement('div');
-    grid.classList.add('grid');
-    grid.addEventListener('mouseover', () => {
-        grid.style.cssText = 'background-color: red;';
-    })
-    grid.addEventListener('mouseout', () => {
-        grid.style.cssText = 'background-color: white;';
-    })
+        const grid = document.createElement('div');
+        grid.classList.add('grid');
+        grid.style.cssText = `flex-basis: calc(960px / ${size});`;
+            grid.addEventListener('mouseover', () => {
+                grid.style.backgroundColor = 'red';
+            })
+            grid.addEventListener('mouseout', () => {
+                grid.style.backgroundColor = 'white';
+            })
     container.appendChild(grid);
 }
 }
